@@ -2,12 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const loggerMiddleware = require('./middlewares/logger.middleware');
-const staticFileMiddleware = require('./middlewares/staticFile.middleware');
-const lessonRoutes = require('./routes/lesson.route');
-const orderRoutes = require('./routes/order.route');
-const updateSpacesRoute = require('./routes/updateSpaces.route');
-const searchRoute = require('./routes/search.route');
+const loggerMiddleware = require('./middleware/logger.middleware');
+const staticFileMiddleware = require('./middleware/staticFile.middleware');
+const lessonRoutes = require('./route/lesson.route');
+const orderRoutes = require('./route/order.route');
+const updateSpacesRoute = require('./route/updateSpaces.route');
+const searchRoute = require('./route/search.route');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
