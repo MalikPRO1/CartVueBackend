@@ -1,6 +1,6 @@
 // updateSpaces.route.js - Route handler for updating lesson spaces
 const express = require('express');
-const Lesson = require('../models/lesson.model');
+const Lesson = require('../model/lesson.model');
 
 const router = express.Router();
 
