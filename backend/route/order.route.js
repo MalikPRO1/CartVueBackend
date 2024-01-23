@@ -1,6 +1,6 @@
 // order.route.js - Route handler for orders
 const express = require('express');
-const Order = require('../models/order.model');
+const Order = require('../model/order.model');
 
 const router = express.Router();
 
