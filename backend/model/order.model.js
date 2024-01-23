@@ -1,11 +1,15 @@
-// order.model.js - Mongoose model for orders
-const mongoose = require('mongoose');
+// order.model.js - MongoDB Node.js Driver model for orders
+const { MongoClient, ObjectId } = require('mongodb');
 
-const orderSchema = new mongoose.Schema({
-    lessonIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' }],
-    quantity: Number,
-    customerName: String,
-    customerEmail: String,
-});
+async function connectToDatabase() {
+    const client = new MongoClient('mongodb://your-mongodb-uri', { useNewUrlParser: true, useUnifiedTopology: true });
+    await client.connect();
+    return client.db('your-database-name');
+}
 
-module.exports = mongoose.model('Order', orderSchema);
+async function getOrderById(orderId) {
+    const db = await connectToDatabase();
+    return db.collection('orders').findOne({ _id: new ObjectId(orderId) });
+}
+
+module.exports = { getOrderById };
