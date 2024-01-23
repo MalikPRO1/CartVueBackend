@@ -1,6 +1,6 @@
 // search.route.js - Route handler for searching lessons
 const express = require('express');
-const Lesson = require('../models/lesson.model');
+const Lesson = require('../model/lesson.model');
 
 const router = express.Router();
 
