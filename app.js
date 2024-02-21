@@ -7,6 +7,7 @@ const logger = require("./logger");
 const app = express();
 
 app.use(express.static("public"));
+//logger stuff
 app.use(logger);
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
