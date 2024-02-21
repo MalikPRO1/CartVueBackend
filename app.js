@@ -86,10 +86,6 @@ app.post("/orders", async (req, res, next) => {
     // Insert the order into the collection
     collection.insertOne(order, (err, result) => {
       if (err) throw err;
-
-      // Update the lesson with the ordered spaces (currently commented out)
-      // updateLesson(order.lesson_id, order.spaces);
-
       res.json(result);
     });
   } catch (err) {
