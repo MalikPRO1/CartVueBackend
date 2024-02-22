@@ -6,7 +6,21 @@ const logger = require("./logger");
 
 const app = express();
 
+
 app.use(express.static("public"));
+
+//Static to that shows if the image appears, if now return an error code
+app.use("/public", (req, res, next) => {
+  // Custom middleware to serve static files
+  express.static("public")(req, res, err => {
+    if (err) {
+      // If there's an error (e.g., file not found), send a 404 response
+      res.status(404).send("Image not found");
+    }
+    // If the file is found, the express.static middleware will handle it automatically
+    // and there's no need to explicitly send a response here.
+  });
+});
 //logger stuff
 app.use(logger);
 app.use(bodyParser.json());
