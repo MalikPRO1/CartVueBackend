@@ -7,6 +7,9 @@ const logger = require("./logger");
 const app = express();
 
 app.use("/public", express.static("public"));
+app.use("/public", (req, res, next) => {
+  res.status(404).send("Image not found");
+});
 //logger stuff
 app.use(logger);
 app.use(bodyParser.json());
