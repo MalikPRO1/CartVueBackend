@@ -80,15 +80,14 @@ app.post("/orders", async (req, res, next) => {
   try {
     const order = req.body;
 
-    // Access the order collection in the database
     const db = getDb();
     const collection = db.collection("order");
 
-    // Insert the order into the collection
-    collection.insertOne(order, (err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
+    const result = await collection.insertOne(order);
+    if (result["acknowledged"]) {
+      updateLesson(order.lesson_id, order.spaces);
+    }
+    res.json(result);
   } catch (err) {
     next(err);
   }
