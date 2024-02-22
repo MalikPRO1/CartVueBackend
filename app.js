@@ -86,13 +86,19 @@ app.post("/orders", async (req, res, next) => {
 
     // Insert the order into the collection
     collection.insertOne(order, (err, result) => {
-      if (err) throw err;
-      res.json(result);
+      if (err) {
+        console.error("Error inserting order:", err);
+        return res.status(500).json({ error: "Error inserting order" });
+      }
+      // Return the inserted order ID
+      res.json({ orderId: result.insertedId });
     });
   } catch (err) {
+    console.error("Error creating order:", err);
     next(err);
   }
 });
+
 
 // Endpoint to update lessons
 app.put("/lessons/:id", (req, res) => {
