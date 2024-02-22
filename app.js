@@ -86,15 +86,10 @@ app.post("/orders", async (req, res, next) => {
 
     // Insert the order into the collection
     collection.insertOne(order, (err, result) => {
-      if (err) {
-        console.error("Error inserting order:", err);
-        return res.status(500).json({ error: "Error inserting order" });
-      }
-      // Return the inserted order ID
-      res.json({ orderId: result.insertedId });
+      if (err) throw err;
+      res.json(result);
     });
   } catch (err) {
-    console.error("Error creating order:", err);
     next(err);
   }
 });
